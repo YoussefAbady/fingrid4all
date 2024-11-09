@@ -1,10 +1,15 @@
-import React from 'react';
 import { useLocation } from 'react-router-dom';
+import React, { useState , useEffect} from 'react';
+import ServicePopup from './ServicePopup';
+
 import './Home.css';
 
 const Home = () => {
   const location = useLocation();
   const user = location.state?.user;
+  const [selectedService, setSelectedService] = useState(null);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [showConfirmationFollow, setShowConfirmationFollow] = useState(false);
 
   const pressReleases = [
     { date: 'December 12, 2024', title: 'Daatahub development group meeting (16) [Coming]', link: '/press-release-2' },
@@ -17,16 +22,47 @@ const Home = () => {
   ];
 
   const systemsServices = [
-    { id: 'INFTOW', icon: '/assets/services/tower-icon.png', title: 'Electrical Tower Software' },
-    { id: 'EUAIP', icon: '/assets/services/end-user-payment-icon.png', title: 'End-user payment process' },
-    { id: 'EUAIM', icon: '/assets/services/electric-meter-icon.png', title: 'Electric Meters System Interface' },
-    { id: 'EUAIPC', icon: '/assets/services/pre-paid-card-icon.png', title: 'Commercial Pre-Paid Card Interface' },
-    { id: 'INFDIS', icon: '/assets/services/electric-dist-icon.png', title: 'Safe Distribution Compliance' },
-    { id: 'EULC', icon: '/assets/services/contract-icon.png', title: 'New Contracting Process' },
-    { id: 'EUDAC', icon: '/assets/services/cons-icon.png', title: 'Consumption Analysis System' },
-    { id: 'EUDAS', icon: '/assets/services/data-aqu-icon.png', title: 'Data Acquisition System' },
+    { id: 'DH-100', icon: '/assets/services/DH-100.png', title: 'Maintanace' },
+    { id: 'DH-200', icon: '/assets/services/DH-200.png', title: 'Metering' },
+    { id: 'DH-300', icon: '/assets/services/DH-300.png', title: 'Agreements' },
+    { id: 'DH-400', icon: '/assets/services/DH-400.png', title: 'Connection Control' },
+    { id: 'DH-500', icon: '/assets/services/DH-500.png', title: 'Imbalance Settlement' },
+    { id: 'DH-600', icon: '/assets/services/DH-600.png', title: 'Balance Deviation' },
+    { id: 'DH-700', icon: '/assets/services/DH-700.png', title: 'Product & Invoicing' },
+    { id: 'DH-800', icon: '/assets/services/DH-800.png', title: 'Authorisation' },
+    { id: 'DH-900', icon: '/assets/services/DH-900.png', title: 'Party Information' },
   ];
 
+ 
+  const handleViewMoreClick = (service) => {
+    setSelectedService(service);
+  };
+  
+  const handleClosePopup = () => {
+    setSelectedService(null);
+  };
+
+  const handleSubscribeClick = () => {
+    setShowConfirmation(true);
+    setTimeout(() => {
+      setShowConfirmation(false);
+    }, 3000); // Hide the message after 3 seconds
+  };
+
+  const handleFollowClick = (serviceId) => {
+    setShowConfirmationFollow((prevMessages) => ({
+      ...prevMessages,
+      [serviceId]: true,
+    }));
+    setTimeout(() => {
+      setShowConfirmationFollow((prevMessages) => ({
+        ...prevMessages,
+        [serviceId]: false,
+      }));
+    }, 3000); // Hide the message after 3 seconds
+  };
+
+  
   return (
     <div className="home-container">
       <header className="home-header">
@@ -36,7 +72,7 @@ const Home = () => {
         <div className="header-right">
           <div className="user-info">
             <img src="/assets/user-avatar.png" alt="User Avatar" className="user-avatar" />
-            <span className="user-name">Customer Name</span>
+            <span className="user-name">{user.username}</span>
           </div>
         </div>
       </header>
@@ -65,15 +101,17 @@ const Home = () => {
                 <span className="release-date">{release.date}</span>
                 <span className="release-title">{release.title}</span>
                 <a href={release.link} className="release-link">
-                  <img src="/assets/open-in-new-tab-icon.jpg" alt="Link Icon" className="link-icon" />
+                  <img src="/assets/open-in-new-tab-icon.jpg" alt="Release Link" target="_blank" className="link-icon" />
                 </a>
               </div>
             ))}
           </div>
-          <button className="subscribe-button">Subscribe</button>
+          <button className="subscribe-button" onClick={handleSubscribeClick}>Subscribe</button>
+          {showConfirmation && <span className="subscribe-confirmation-message">Subscribed Successfully!</span>}
+
         </section>
         <section className="systems-services-section">
-          <h2>Systems & Services</h2>
+          <h2>Processes Areas</h2>
           <div className="cards-container">
             {systemsServices.map((service) => (
               <div key={service.id} className="card">
@@ -81,14 +119,16 @@ const Home = () => {
                 <img src={service.icon} alt={`${service.title} Icon`} className="card-icon" />
                 <h3 className="card-title">{service.title}</h3>
                 <div className="card-buttons">
-                  <button className="card-button">View More</button>
-                  <button className="card-button">Subscribe</button>
+                  <button className="card-button"  onClick={() => handleViewMoreClick(service)}>View More</button>
+                  <button className="card-button" onClick={() => handleFollowClick(service.id)} >Follow</button>
                 </div>
+                {showConfirmationFollow[service.id]  && <span className="subscribe-confirmation-message">Followed Successfully!</span>}
               </div>
             ))}
           </div>
         </section>
-      </main>
+        {selectedService && <ServicePopup service={selectedService} onClose={handleClosePopup} />}
+        </main>
       <footer className="home-footer">
         <div className="footer-content">
           <p>&copy; 2024 FINGRID4ALL. All rights reserved.</p>

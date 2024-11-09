@@ -21,7 +21,7 @@ def login():
     data = request.json
     customer = Customer.query.filter_by(username=data['username']).first()
     if customer and customer.password == data['password']:
-        return jsonify({"message": "Login successful", "customer": {"username": customer.username, "email": customer.email}})
+        return jsonify({"message": "Login successful", "customer": {"username": customer.username, "email": customer.email}}),200
     return jsonify({"message": "Invalid credentials"}), 401
 
 @app.route('/profile', methods=['GET', 'POST'])

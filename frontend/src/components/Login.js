@@ -23,14 +23,26 @@ const Login = () => {
   
   const handleMicrosoftLogin = () => {
     // Implement Microsoft login logic here
-    alert('Microsoft login clicked');
+    alert('Microsoft login is not yet supported');
+  };
+
+  const handleForgotPassword = () => {
+    // Implement Microsoft login logic here
+    alert('Demo Credentials: \n\nUsername: demo\nPassword: demo');
+  };
+ 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleLogin();
+    }
   };
 
   return (
     <div className="login-container">
-      <div className="login-box">
+      <div className="login-box" onKeyDown={handleKeyDown}>
         <img src="/assets/logo.png" alt="FINGRID Logo" className="login-logo" />
-        <h2 className="login-title">Customer Portal</h2>
+        <img src="/assets/4all.png" alt="FINGRID Logo" className="for-all-logo" />
+        <h2 className="login-title">Parteners@FINGRID</h2>
         <div className="login-field">
           <label htmlFor="username" className="login-label">Username</label>
           <input
@@ -58,7 +70,7 @@ const Login = () => {
           <img src="/assets/microsoft-icon.png" alt="Microsoft Icon" className="microsoft-icon" />
           Login with Microsoft
         </button>
-        <a href="/forgot-password" className="forgot-password-link">Forgot Password?</a>
+        <a href="/login" onClick={handleForgotPassword} className="forgot-password-link">Forgot Password?</a>
       </div>
     </div>
   );
