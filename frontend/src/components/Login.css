@@ -1,0 +1,96 @@
+.login-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    background-image: url('https://www.sttinfo.fi/data/images/00577/ec3c62f5-1251-4b33-9ab1-faa346e31459-w_3000_h_1000.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-left: 20px;
+}
+
+.login-box {
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 400px;
+}
+
+.login-logo {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+.login-title {
+    margin-bottom: 30px;
+    color: #333;
+    font-size: 24px;
+}
+
+.login-field {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.login-label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.login-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.login-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #0073e6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.login-button:hover {
+    background-color: #005bb5;
+}
+
+.forgot-password-link {
+    display: block;
+    margin-top: 20px;
+    color: #0073e6;
+    text-decoration: none;
+}
+
+.forgot-password-link:hover {
+    text-decoration: underline;
+}
+
+.microsoft-login-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #f3f3f3;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.microsoft-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
