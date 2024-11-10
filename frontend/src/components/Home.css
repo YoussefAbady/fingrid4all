@@ -134,9 +134,21 @@
     flex-grow: 1;
 }
 
-.release-link {
-    display: flex;
+.release-link img {
+    width: 20px; /* Adjust width as needed */
+    height: 20px; /* Adjust height as needed */
+    display: inline-block;
+    align-items: center;
 }
+
+.release-link {
+    margin-left: 10px; /* Space between text and icon */
+    vertical-align: middle; /* Align the icon vertically with the text */
+    color: inherit; /* Inherit color from the h3 */
+    text-decoration: none; /* Remove underline from the link */
+}
+
+
 
 .link-icon {
     height: 20px;
@@ -283,4 +295,38 @@
     100% {
         opacity: 0;
     }
+}
+
+.press-release-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.press-release-content {
+    flex: 1;
+}
+
+.press-release-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.icon {
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.like-icon {
+    color: green;
+}
+
+.dislike-icon {
+    color: red;
+}
+
+.comment-icon {
+    color: blue;
 }

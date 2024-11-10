@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import React, { useState , useEffect} from 'react';
+import { FaThumbsUp, FaThumbsDown, FaComment } from 'react-icons/fa';
 import ServicePopup from './ServicePopup';
 
 import './Home.css';
@@ -99,10 +100,20 @@ const Home = () => {
             {pressReleases.map((release, index) => (
               <div key={index} className="press-release">
                 <span className="release-date">{release.date}</span>
-                <span className="release-title">{release.title}</span>
-                <a href={release.link} className="release-link">
-                  <img src="/assets/open-in-new-tab-icon.jpg" alt="Release Link" target="_blank" className="link-icon" />
+                <span className="release-title">{release.title}
+                <a href="https://palvelut.datahub.fi/api/documents/file/0-473974-2-633373" className="release-link" target="_blank" rel="noopener noreferrer">
+                  <img src="/assets/open-in-new-tab-icon.jpg" alt="Open Documentation" />
                 </a>
+
+                </span>
+                <div className="press-release-icons">
+                {/* <a href={release.link} className="release-link">
+                  <img src="/assets/open-in-new-tab-icon.jpg" alt="Release Link" target="_blank" className="link-icon" />
+                </a> */}
+                  <FaThumbsUp className="icon like-icon" />
+                  <FaThumbsDown className="icon dislike-icon" />
+                  <FaComment className="icon comment-icon" />
+                </div>
               </div>
             ))}
           </div>

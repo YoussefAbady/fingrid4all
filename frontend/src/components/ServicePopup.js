@@ -1,4 +1,5 @@
 import React, { version } from 'react';
+import { FaThumbsUp, FaThumbsDown, FaComment } from 'react-icons/fa';
 import './ServicePopup.css';
 
 const process_map = {
@@ -177,7 +178,7 @@ const process_map = {
       }
     } 
   },
-  
+
   'DH-900': {
     Full_Titile: 'Party Information Processes',
     Processes: ['DH-310: Customer Information Maintenance',
@@ -263,6 +264,12 @@ const ServicePopup = ({ service, onClose }) => {
               <p>
                 {item.Title}
                 <a href={item.Notes} target="_blank" rel="noopener noreferrer" alt="Open Documentation"> See More</a>
+                <div className="roadmap-feedback">
+                  Feedback: 
+                  <FaThumbsUp className="icon like-icon" />
+                  <FaThumbsDown className="icon dislike-icon" />
+                  <FaComment className="icon comment-icon" />
+                </div>
               </p>
             </li>
           ))}
